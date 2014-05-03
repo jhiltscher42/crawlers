@@ -463,12 +463,14 @@ define(["require","vector","jquery","jquery.mousewheel"],function(require,vector
 			    $(el).data().camera.modelIsUpdated();
 			});
 		});
-	    $(window).resize();
+	    var $window=$(window);
+
+	    $window.resize();
 	    
 	    //Some mumbo jumbo going on here.  May want to suss this out later, because $(document).ready is supposed to fire after everything is in place on the page,
 	    //so why do we need to have a resize event fire half a second later?!
 
-	    setTimeout($(window).resize.bind($window),500);
+	    setTimeout($window.resize.bind($window),500);
 	    window.camView=$("#cameraView").data("camera");
 	});
 
