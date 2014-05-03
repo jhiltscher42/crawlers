@@ -10,7 +10,8 @@
 var require={
       paths:{jquery:"//code.jquery.com/jquery-latest.min",
             async_j:"jscript/async_J"
-            }
+            },
+      shim:{"jquery.mousewheel":{deps:['jquery']}}
    };
 </script>
 <script src="jscript/require.js" data-main="jscript/main.js"></script>
