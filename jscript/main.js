@@ -1,0 +1,2 @@
+require(["camera"],function(camera){
+    });
