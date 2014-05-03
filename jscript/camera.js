@@ -464,10 +464,11 @@ define(["require","vector","jquery","jquery.mousewheel"],function(require,vector
 			});
 		});
 	    $(window).resize();
-	    //fuck.  apparently, the 'camera' canvases aren't /necessarily/ completely in place by the time this
-	    //part happens, so we have to launch a new event to occur half a second later, so that the control canvases attach
-	    //to the right place.  Fuck.  That's ugly as hell.
-	    setTimeout(function(){$(window).resize();},500);
+	    
+	    //Some mumbo jumbo going on here.  May want to suss this out later, because $(document).ready is supposed to fire after everything is in place on the page,
+	    //so why do we need to have a resize event fire half a second later?!
+
+	    setTimeout($(window).resize.bind($window),500);
 	    window.camView=$("#cameraView").data("camera");
 	});
 
