@@ -283,7 +283,7 @@ define(["require","vector","jquery","jquery.mousewheel"],function(require,vector
 	    //console.log("update");
 	    if (gc){
 		canvasWidth=gc.canvas.width;
-Os		canvasHeight=gc.canvas.height;
+		canvasHeight=gc.canvas.height;
 		  gc.setTransform(1,0,0,1,0,0);
 		if (model && !model.handlesEraseCamera) {
 		  gc.clearRect(0,0,gc.canvas.width,gc.canvas.height);
