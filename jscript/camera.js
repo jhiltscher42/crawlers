@@ -245,6 +245,10 @@ define(["require","vector","jquery","jquery.mousewheel"],function(require,vector
 
 	var eventsHelp={help:"calling will cause this to trigger the associated event handlers"};		      
 			      
+	this.touchmove=function(coords,evt){
+	    return handle('touchmove',coords,evt);
+	}
+
 	this.click=function(coords,evt){
 	    return handle('click',coords,evt);
 	}
@@ -279,7 +283,7 @@ define(["require","vector","jquery","jquery.mousewheel"],function(require,vector
 	    //console.log("update");
 	    if (gc){
 		canvasWidth=gc.canvas.width;
-		canvasHeight=gc.canvas.height;
+Os		canvasHeight=gc.canvas.height;
 		  gc.setTransform(1,0,0,1,0,0);
 		if (model && !model.handlesEraseCamera) {
 		  gc.clearRect(0,0,gc.canvas.width,gc.canvas.height);
