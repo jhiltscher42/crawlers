@@ -28,6 +28,9 @@ function _Iterable(){
 					nationalityIndex=0; drinkIndex++;
 					if (drinkIndex>4){
 						drinkIndex=0; petIndex++;
+						if (petIndex>4){
+							petIndex=0; smokeIndex++;
+						}
 					}
 				}				
 			}
