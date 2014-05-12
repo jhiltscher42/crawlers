@@ -3,7 +3,7 @@ require(["camera","async_J"],function(camera,async_J){
 function _Iterable(){
 		var colorIndex=0,nationalityIndex=0,drinkIndex=0,petIndex=0,smokeIndex=0;
 	
-		this.next=function(){
+		this.Next=function(){
 			var ret=new async_J.promise();
 			var vals=[{},{},{},{},{}];
 			
@@ -43,6 +43,7 @@ function _Iterable(){
 		};
 		
 	}
+	
 
 
 	var Nationalities={Swede:1,German:2,Norwegian:3,Brit:4,Dane:5};
@@ -90,7 +91,7 @@ function _Iterable(){
 	
 	
 	function runTests(iterable){
-		var testRet=iterable.next();
+		var testRet=iterable.Next();
 		testRet.then(_sequence(Tests))
 			   .then(null,isExhaustedIter)
 			   .then(null,runTests)
@@ -110,7 +111,7 @@ function _Iterable(){
 			alert(JSON.stringify(touchEvt));
 			touchEvt.preventDefault();
 		    });
-		console.log(new _Iterable().next());
+		console.log(new _Iterable().Next());
 	    });
 
     });
