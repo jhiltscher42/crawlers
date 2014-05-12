@@ -141,6 +141,9 @@ _Iterable.exhausted="Iterable exhausted";
 		return val;
 		}
 	
+	window.Tests=Tests;
+	window._sequence=_sequence;
+	
 	function runTests(iterable)
 	{
 		console.log("calling Next");
