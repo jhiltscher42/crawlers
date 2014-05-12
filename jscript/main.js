@@ -121,7 +121,7 @@ function _Iterable(){
 	var DaneDrinksTea=makeMatch2("nationality","Dane","drink","Tea","The Dane doesn't drink Tea");
 	function GreenHouseIsOnTheLeftOfWhite(val){
 		var ret=new async_J.promise();
-		if (find(val,"color","Green")>find(val,"color","White)) ret.reject("The Green House is on the wrong side of the White House");
+		if (find(val,"color","Green")>find(val,"color","White")) ret.reject("The Green House is on the wrong side of the White House");
 		else ret.resolve(val);
 		return ret;
 	}
@@ -224,9 +224,9 @@ function _Iterable(){
 	
 	function runTests(iterable)
 	{
-		console.log("calling Next");
+		//console.log("calling Next");
 		var testRet=iterable.Next();
-		console.log("Next called");
+		//console.log("Next called");
 		testRet //.then(sayTesting)
 				.then(allTests(Tests))
 			   .then(outputPassedTest)
