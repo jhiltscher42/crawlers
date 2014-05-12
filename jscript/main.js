@@ -95,7 +95,7 @@ function _Iterable(){
 			alert(JSON.stringify(touchEvt));
 			touchEvt.preventDefault();
 		    });
-		console.log(new _Iterable().Next());
+		new _Iterable().Next().then(console.log.bind(console),console.error.bind(console));
 	    });
 
     });
