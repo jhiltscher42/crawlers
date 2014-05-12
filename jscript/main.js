@@ -81,8 +81,8 @@ _Iterable.exhausted="Iterable exhausted";
 	var Tests=[function(val){
 		var ret=new async_J.promise();
 		//The brit lives in the red house
-		//if (find(val,"nationality","Brit")!==find(val,"color","Red")) throw "The Brit doesn't live in the Red House";
-		if (testPassed-->0) ret.reject("test failed");
+		if (find(val,"nationality","Brit")!==find(val,"color","Red")) ret.reject( "The Brit doesn't live in the Red House");
+		//if (testPassed-->0) ret.reject("test failed");
 		else ret.resolve(val); 
 		return ret;
 	}];
@@ -105,17 +105,17 @@ _Iterable.exhausted="Iterable exhausted";
 	
 	function _sequence(fns){
 		//returns a function which takes a value and returns a promise which resolves with the last function in fns
-		console.log("making function");
+		//console.log("making function");
 		return function(val){
-			console.log("sequence "+fns.length);
+			//console.log("sequence "+fns.length);
 			var seqRet=new async_J.promise();
 			var step=new async_J.promise();
 			step.resolve(val);
-			console.log("first step resolves to ",val);
+			//console.log("first step resolves to ",val);
 			//fns[0]().then(fns[1]).then(fns[2])...
 			fns.forEach(function(fn){
 				//console.log(fn);
-					console.log("step");
+				//	console.log("step");
 					step=step.then(fn,failed);
 				});
 
@@ -125,13 +125,13 @@ _Iterable.exhausted="Iterable exhausted";
 	}
 	
 	function isExhaustedIter(val){
-		console.log("exhausted?");
+		//console.log("exhausted?");
 		if (val===_Iterable.exhausted){
-			console.log("yes");
+			//console.log("yes");
 			return val;
 			}
 		else{
-			console.log("no");
+			//console.log("no");
 			throw val;
 			}
 		}
@@ -149,7 +149,7 @@ _Iterable.exhausted="Iterable exhausted";
 		console.log("calling Next");
 		var testRet=iterable.Next();
 		console.log("Next called");
-		testRet .then(sayTesting)
+		testRet //.then(sayTesting)
 				.then(_sequence(Tests))
 			   .then(undefined,isExhaustedIter)
 			   .then(undefined,runTests.bind(this,iterable))
