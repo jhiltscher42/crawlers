@@ -85,6 +85,7 @@ function _Iterable(){
 	{
 		return function(val)
 		{
+			console.log(val);
 			var ret=new async_J.promise();
 			if (find(val,key1,val1)!==find(val,key2,val2)) ret.reject(ruleText);
 			else ret.resolve(val);
