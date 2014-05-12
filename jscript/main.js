@@ -103,6 +103,7 @@ _Iterable.exhausted="Iterable exhausted";
 			step.resolve(val);
 			//fns[0]().then(fns[1]).then(fns[2])...
 			fns.forEach(function(fn){
+				console.log(fn);
 				step=step.then(fn);
 				});
 
