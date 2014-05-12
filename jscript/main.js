@@ -8,7 +8,7 @@ function _Iterable(){
 			var vals=[{},{},{},{},{}];
 			
 			var colors=putToArray(HouseColor,colorIndex);
-			var nationality=putToArray(Nationalities,nationalityIndex);
+			var nationalities=putToArray(Nationalities,nationalityIndex);
 			var smokes=putToArray(Smokes,smokeIndex);
 			var pets=putToArray(Pets,petIndex);
 			var drinks=putToArray(Drinks,drinkIndex);
