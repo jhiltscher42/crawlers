@@ -133,7 +133,7 @@ _Iterable.exhausted="Iterable exhausted";
 		var testRet=iterable.Next();
 		testRet.then(sayTesting).then(_sequence(Tests))
 			   .then(null,isExhaustedIter)
-			   .then(null,setTimeout.call(this,runTests.call(this,[iterable]),0))
+			   .then(null,setTimeout.call(this,runTests.call(this,iterable),0))
 			   .then(outputPassedTest);
 		return testRet;
 		}
