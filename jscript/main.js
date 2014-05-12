@@ -47,7 +47,7 @@ require(["camera","async_J"],function(camera,async_J){
 	function runTests(iterable){
 		var testRet=iterable.next();
 		testRet.then(_sequence(Tests))
-			   .then(null,isExhaustedIter);
+			   .then(null,isExhaustedIter)
 			   .then(null,runTests)
 			   .then(outputPassedTest);
 		return testRet;
