@@ -24,7 +24,9 @@ require(["camera","async_J"],function(camera,async_J){
 		return ret.splice(offset).concat(ret);
 	}
 	
-	function Iterable(){
+	function _Iterable(){
+		var colorIndex=0,nationalityIndex=0,drinkIndex=0,petIndex=0,smokeIndex=0;
+	
 		this.next=function(){
 			var ret=new async_J.promise();
 			var vals=[{},{},{},{},{}];
@@ -62,7 +64,7 @@ require(["camera","async_J"],function(camera,async_J){
 			}
 			ret.resolve(vals);
 			return ret;
-		}
+		};
 		
 	}
 	
@@ -103,7 +105,7 @@ require(["camera","async_J"],function(camera,async_J){
 			alert(JSON.stringify(touchEvt));
 			touchEvt.preventDefault();
 		    });
-		console.log(new Iterable().next());
+		console.log(new _Iterable().next());
 	    });
 
     });
