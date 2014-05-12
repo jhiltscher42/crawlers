@@ -140,7 +140,8 @@ _Iterable.exhausted="Iterable exhausted";
 		console.log("calling Next");
 		var testRet=iterable.Next();
 		console.log("Next called");
-		testRet.then(sayTesting).then(_sequence(Tests))
+		testRet //.then(sayTesting)
+				.then(_sequence(Tests))
 			   .then(null,isExhaustedIter)
 			   .then(null,function()
 				{
