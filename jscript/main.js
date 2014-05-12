@@ -152,7 +152,7 @@ _Iterable.exhausted="Iterable exhausted";
 		testRet .then(sayTesting)
 				.then(_sequence(Tests))
 			   .then(undefined,isExhaustedIter)
-			   .then(undefined,runTests.bind(this,iterable));
+			   .then(undefined,runTests.bind(this,iterable))
 			   .then(outputPassedTest);
 		return testRet;
 	}
