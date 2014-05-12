@@ -99,11 +99,13 @@ _Iterable.exhausted="Iterable exhausted";
 	
 	function _sequence(fns){
 		//returns a function which takes a value and returns a promise which resolves with the last function in fns
+		console.log("making function");
 		return function(val){
-			//console.log("sequence "+fns.length);
+			console.log("sequence "+fns.length);
 			var seqRet=new async_J.promise();
 			var step=new async_J.promise();
 			step.resolve(val);
+			console.log("first step resolves to ",val);
 			//fns[0]().then(fns[1]).then(fns[2])...
 			fns.forEach(function(fn){
 				//console.log(fn);
