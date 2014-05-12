@@ -3,6 +3,10 @@ require(["camera","async_J"],function(camera,async_J){
 function _Iterable(){
 		var colorIndex=0,nationalityIndex=0,drinkIndex=0,petIndex=0,smokeIndex=0;
 	
+		this.Next=function(){
+			var ret=new async_J.promise();
+			return ret;
+		};
 		
 	}
 	
