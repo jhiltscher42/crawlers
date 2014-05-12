@@ -118,7 +118,10 @@ _Iterable.exhausted="Iterable exhausted";
 			alert(JSON.stringify(touchEvt));
 			touchEvt.preventDefault();
 		    });
-		new _Iterable().Next().then(console.log.bind(console),console.error.bind(console));
+		var lists=new _Iterable();
+		lists.Next().then(console.log.bind(console),console.error.bind(console))
+			 .then(lists.Next)
+			 .then(console.log.bind(console),console.error.bind(console));
 	    });
 
     });
