@@ -115,13 +115,15 @@ _Iterable.exhausted="Iterable exhausted";
 		var ret=new async_J.promise();
 		var vals=[];
 		function step(){
-			iter.Next().then(function(val){
+			iter.Next().then(function(val)
+			{
 				vals.push(val);
 				num--;
 				if (num<=0) ret.resolve(vals);
 				else setTimeout(step,0);
 				});
-			}();
+			}
+		}();
 		return ret;
 	}
 	
