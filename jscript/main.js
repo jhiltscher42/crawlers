@@ -98,16 +98,60 @@ function _Iterable(){
 		}
 	}
 		
+	function isPosition(key1,val1,position,ruleText){
+		return function(val){
+			var ret=new async_J.promise();
+			if (val[position][key1]!==val1) ret.reject(ruleText);
+			else ret.resolve(val);
+			return ret;
+		}
+	}
+	
+	function isNextTo(key1,val1,key2,val2,ruleText){
+		return function(val){
+			var ret=new async_J.promise();
+			if (Math.abs(find(val,key1,val1)-find(val,key2,val2))!=1) ret.reject(ruleText);
+			else ret.resolve(val);
+			return ret;
+		}
+	}
+		
 	var BritIsRed=makeMatch2("nationality","Brit","color","Red","The Brit doesn't live in the Red House");
 	var SwedeKeepsDogs=makeMatch2("nationality","Swede","pet","Dogs","The Swede doesn't keep Dogs");
 	var DaneDrinksTea=makeMatch2("nationality","Dane","drink","Tea","The Dane doesn't drink Tea");
+	function GreenHouseIsOnTheLeftOfWhite(val){
+		var ret=new async_J.promise();
+		if (find(val,"color","Green")>find(val,"color","White)) ret.reject("The Green House is on the wrong side of the White House");
+		else ret.resolve(val);
+		return ret;
+	}
 	var GreenOwnerDrinksCoffee=makeMatch2("color","Green","drink","Coffee","The Green owner doesn't drink Tea");
 	var PallMallSmokerHasBirds=makeMatch2("smoke","PallMall","pet","Birds","The Pall Mall smoker doesn't have birds");
 	var YellowOwnerSmokesDunhill=makeMatch2("color","Yellow","smoke","Dunhill","The Yellow owner doesn't smoke Dunhill");
+	var CenterOwnerDrinksMilk=isPosition("drink","Milk",2,"The owner of the center house doesn't drink Milk");
+	var NorwegianLivesLeftmost=isPosition("nationality","Norwegian",0,"The Norwegian doesn't live in the first house");
+	var MarlboroSmokerNextToCatOwner=isNextTo("smoke","Marlboro","pet","Cats","The Marlboro smoker is not next to the cat owner");
+	var HorseOwnerNextToDunhillSmoker=isNextTo("smoke","Dunhill","pet","Horses","The Dunhill smoker is not next to the horse owner");
 	var WinfieldSmokerDrinksBeer=makeMatch2("smoke","Winfield","drink","beer","The Winfield smoker doesn't drink beer");
 	var GermanSmokesRothmans=makeMatch2("nationality","German","smoke","Rothmans","The German doesn't smoke Rothmans");
+	var NorwegienLivesNextToBlueHouse=isNextTo("nationality","Norwegian","color","Blue","The Norwegian is not next to the Blue House");
+	var MarlboroSmokerNextToWaterDrinker=isNextTo("smoke","Marlboro","drink","water","The Marlboro smoker is not next to the water drinker");
 	
-	var Tests=[BritIsRed,SwedeKeepsDogs,DaneDrinksTea,GreenOwnerDrinksCoffee,PallMallSmokerHasBirds,WinfieldSmokerDrinksBeer,GermanSmokesRothmans];
+	var Tests=[	BritIsRed,
+				SwedeKeepsDogs,
+				DaneDrinksTea,
+				GreenHouseIsOnTheLeftOfWhite,
+				GreenOwnerDrinksCoffee,
+				PallMallSmokerHasBirds,
+				YellowOwnerSmokesDunhill,
+				CenterOwnerDrinksMilk,
+				NorwegianLivesLeftmost,
+				MarlboroSmokerNextToCatOwner,
+				HorseOwnerNextToDunhillSmoker,
+				WinfieldSmokerDrinksBeer,
+				GermanSmokesRothmans,
+				NorwegienLivesNextToBlueHouse,
+				MarlboroSmokerNextToWaterDrinker];
 
 	function putToArray(ob,offset){
 		var ret=[];
