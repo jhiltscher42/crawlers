@@ -107,7 +107,8 @@ _Iterable.exhausted="Iterable exhausted";
 			//fns[0]().then(fns[1]).then(fns[2])...
 			fns.forEach(function(fn){
 				//console.log(fn);
-				step=step.then(fn);
+					console.log("step");
+					step=step.then(fn);
 				});
 
 			step.then(seqRet.resolve,seqRet.reject);
@@ -116,19 +117,19 @@ _Iterable.exhausted="Iterable exhausted";
 	}
 	
 	function isExhaustedIter(val){
-		//console.log("exhausted?");
+		console.log("exhausted?");
 		if (val===_Iterable.exhausted){
-			//console.log("yes");
+			console.log("yes");
 			return val;
 			}
 		else{
-			//console.log("no");
+			console.log("no");
 			throw val;
 			}
 		}
 	
 	function sayTesting(val){
-		//console.log("testing ",val);
+		console.log("testing ",val);
 		return val;
 		}
 	
