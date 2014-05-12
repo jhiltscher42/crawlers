@@ -87,7 +87,7 @@ function _Iterable(){
 		{
 			console.log(val);
 			var ret=new async_J.promise();
-			if (!val) ret.reject(val);
+			if (!val) ret.reject("lost");
 			else if (find(val,key1,val1)!==find(val,key2,val2)) ret.reject(ruleText);
 			else ret.resolve(val);
 		}
