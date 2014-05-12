@@ -30,8 +30,6 @@ function _Iterable(){
 						drinkIndex=0; petIndex++;
 						if (petIndex>4){
 							petIndex=0; smokeIndex++;
-							if (smokeIndex>4){
-								}
 							}
 						}
 					}
