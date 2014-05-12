@@ -1,5 +1,50 @@
 require(["camera","async_J"],function(camera,async_J){
 
+function _Iterable(){
+		var colorIndex=0,nationalityIndex=0,drinkIndex=0,petIndex=0,smokeIndex=0;
+	
+		this.next=function(){
+			var ret=new async_J.promise();
+			var vals=[{},{},{},{},{}];
+			
+			var colors=putToArray(HouseColor,colorIndex);
+			var nationality=putToArray(Nationalities,natIndex);
+			var smokes=putToArray(Smokes,smokeIndex);
+			var pets=putToArray(Pets,petIndex);
+			var drinks=putToArray(Drinks,drinkIndex);
+			
+			vals.forEach(function(val){
+					val.color=colors.pop();
+					val.nationality=nationalities.pop();
+					val.drink=drinks.pop();
+					val.pet=pets.pop();
+					val.smoke=smokes.pop();
+				});
+			colorIndex++;
+			if (colorIndex>4) {
+				colorIndex=0; nationalityIndex++;
+				if (nationalityIndex>4){
+					nationalityIndex=0; drinkIndex++;
+					if (drinkIndex>4){
+						drinkIndex=0; petIndex++;
+						if (petIndex>4){
+							petIndex=0; smokeIndex++;
+							if (smokeIndex>4){
+								ret.reject(Iterable.exhausted);
+								return ret;
+								}
+							}
+						}
+					}
+				}
+			}
+			ret.resolve(vals);
+			return ret;
+		};
+		
+	}
+
+
 	var Nationalities={Swede:1,German:2,Norwegian:3,Brit:4,Dane:5};
 	var Pets={Cats:6,Dogs:7,Horses:8,Birds:9,Fish:10};
 	var Smokes={PallMall:11,Marlboro:12,Rothmans:13,Dunhill:14,Winfield:15};
