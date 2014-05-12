@@ -1,5 +1,21 @@
 require(["camera","async_J"],function(camera,async_J){
 
+	//A ResultSet is an array of 5 5-tuples [{HouseColor,Nationality,Smokes,Drinks,Pet}..]
+
+	//An Iteratable gives {promise next();  which resolves with a result set or fails with exhausted Iterable}
+	
+	//An Iterator takes an Iterable and calls it's next() method until done
+	
+	//A Test takes a resultset and returns a promise.  the promise resolves with the result set on a pass, and rejects with a fail.
+
+
+	var Nationalities={Swede:1,German:2,Norwegian:3,Brit:4,Dane:5};
+	var Pets={Cats:6,Dogs:7,Horses:8,Birds:9,Fish:10};
+	var Smokes={PallMall:11,Marlboro:12,Rothmans:13,Dunhill:14,Winfield:15};
+	var Drinks={Water:16,Tea:17,Coffee:18,Beer:19,Milk:20};
+	var HouseColor={Red:21,Green:22,Yellow:23,Blue:24,White:25};
+
+
 function _Iterable(){
 		var colorIndex=0,nationalityIndex=0,drinkIndex=0,petIndex=0,smokeIndex=0;
 	
@@ -51,50 +67,40 @@ function _Iterable(){
 		
 	};
 	
-_Iterable.exhausted="Iterable exhausted";
-
-
-	var Nationalities={Swede:1,German:2,Norwegian:3,Brit:4,Dane:5};
-	var Pets={Cats:6,Dogs:7,Horses:8,Birds:9,Fish:10};
-	var Smokes={PallMall:11,Marlboro:12,Rothmans:13,Dunhill:14,Winfield:15};
-	var Drinks={Water:16,Tea:17,Coffee:18,Beer:19,Milk:20};
-	var HouseColor={Red:21,Green:22,Yellow:23,Blue:24,White:25};
-
-	//A ResultSet is an array of 5 5-tuples [{HouseColor,Nationality,Smokes,Drinks,Pet}..]
-
-	//An Iteratable gives {promise next();  which resolves with a result set or fails with exhausted Iterable}
 	
-	//An Iterator takes an Iterable and calls it's next() method until done
-	
-	//A Test takes a resultset and returns a promise.  the promise resolves with the result set on a pass, and rejects with a fail.
+	_Iterable.exhausted="Iterable exhausted";
+
 
 	function find(resultSet,name,val){
-		//returns the tuple where tuple[name]==val;
+		//returns the index where tuple[name]==val;
 		for (var n=0;n<resultSet.length;n++){
-			if (resultSet[n][name]==val) return resultSet[n];
+			if (resultSet[n][name]==val) return n;
 			}
-		return null;
+		return -1;
 		}
 	
 	var testPassed=4;
 	
-	function BritIsRed(val){
-		var ret=new async_J.promise();
-		//The brit lives in the red house
-		if (find(val,"nationality","Brit")!==find(val,"color","Red")) ret.reject( "The Brit doesn't live in the Red House");
-		//if (testPassed-->0) ret.reject("test failed");
-		else ret.resolve(val); 
-		return ret;
-	}
-	
-	function SwedeKeepsDogs(val){
-		var ret=new async_J.promise();
-		if (find(val,"nationality","Swede")!==find(val,"pet","Dogs")) ret.reject("The Swede doesn't keep Dogs");
-		else ret.resolve(val);
-		return ret;
+	function makeMatch2(key1,val1,key2,val2,ruleText)
+	{
+		return function(val)
+		{
+			var ret=new async_J.promise();
+			if (find(val,key1,val1)!==find(val,key2,val2)) ret.reject(ruleText);
+			else ret.resolve(val);
 		}
+	}
+		
+	var BritIsRed=makeMatch2("nationality","Brit","color","Red","The Brit doesn't live in the Red House");
+	var SwedeKeepsDogs=makeMatch2("nationality","Swede","pet","Dogs","The Swede doesn't keep Dogs");
+	var DaneDrinksTea=makeMatch2("nationality","Dane","drink","Tea","The Dane doesn't drink Tea");
+	var GreenOwnerDrinksCoffee=makeMatch2("color","Green","drink","Coffee","The Green owner doesn't drink Tea");
+	var PallMallSmokerHasBirds=makeMatch2("smoke","PallMall","pet","Birds","The Pall Mall smoker doesn't have birds");
+	var YellowOwnerSmokesDunhill=makeMatch2("color","Yellow","smoke","Dunhill","The Yellow owner doesn't smoke Dunhill");
+	var WinfieldSmokerDrinksBeer=makeMatch2("smoke","Winfield","drink","beer","The Winfield smoker doesn't drink beer");
+	var GermanSmokesRothmans=makeMatch2("nationality","German","smoke","Rothmans","The German doesn't smoke Rothmans");
 	
-	var Tests=[BritIsRed,SwedeKeepsDogs];
+	var Tests=[BritIsRed,SwedeKeepsDogs,DaneDrinksTea,GreenOwnerDrinksCoffee,PallMallSmokerHasBirds,WinfieldSmokerDrinksBeer,GermanSmokesRothmans];
 
 	function putToArray(ob,offset){
 		var ret=[];
