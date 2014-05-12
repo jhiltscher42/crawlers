@@ -21,6 +21,24 @@ function _Iterable(){
 					val.smoke=smokes.pop();
 				});
 
+			colorIndex++;
+			if (colorIndex>4) {
+				colorIndex=0; nationalityIndex++;
+				if (nationalityIndex>4){
+					nationalityIndex=0; drinkIndex++;
+					if (drinkIndex>4){
+						drinkIndex=0; petIndex++;
+						if (petIndex>4){
+							petIndex=0; smokeIndex++;
+							if (smokeIndex>4){
+								ret.reject(_Iterable.exhausted);
+								return ret;
+								}
+							}
+						}
+					}
+				}
+			}
 
 
 				ret.resolve(vals);
@@ -29,6 +47,7 @@ function _Iterable(){
 		
 	}
 	
+_Iterable.exhausted="Iterable exhausted";
 
 
 	var Nationalities={Swede:1,German:2,Norwegian:3,Brit:4,Dane:5};
