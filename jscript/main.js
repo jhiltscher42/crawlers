@@ -79,6 +79,7 @@ _Iterable.exhausted="Iterable exhausted";
 	var Tests=[function(val){
 		//The brit lives in the red house
 		if (find(val,"nationality","Brit")!==find(val,"color","Red")) throw "The Brit doesn't live in the Red House";
+		console.log(val);
 		return val;
 	}];
 
