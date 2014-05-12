@@ -141,6 +141,14 @@ function _Iterable(){
 		}
 	}
 	
+	function allTests(fns)
+	{
+		return function(val)
+		{
+			return async_J.all(fns.map(function(f){return f(val);}));
+		}
+	}
+	
 	function isExhaustedIter(val){
 		//console.log("exhausted?");
 		if (val===_Iterable.exhausted){
@@ -167,7 +175,7 @@ function _Iterable(){
 		var testRet=iterable.Next();
 		console.log("Next called");
 		testRet //.then(sayTesting)
-				.then(_sequence(Tests))
+				.then(allTests(Tests))
 			   .then(outputPassedTest)
 			   .then(undefined,isExhaustedIter)
 			   .then(undefined,runTests.bind(this,iterable));
