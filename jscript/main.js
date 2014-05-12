@@ -1,10 +1,10 @@
 require(["camera","async_J"],function(camera,async_J){
 
-	Nationalities={Swede:1,German:2,Norwegian:3,Brit:4,Dane:5};
-	Pets={Cats:6,Dogs:7,Horses:8,Birds:9,Fish:10};
-	Smokes={PallMall:11,Marlboro:12,Rothmans:13,Dunhill:14,Winfield:15};
-	Drinks={Water:16,Tea:17,Coffee:18,Beer:19,Milk:20};
-	HouseColor={Red:21,Green:22,Yellow:23,Blue:24,White:25};
+	var Nationalities={Swede:1,German:2,Norwegian:3,Brit:4,Dane:5};
+	var Pets={Cats:6,Dogs:7,Horses:8,Birds:9,Fish:10};
+	var Smokes={PallMall:11,Marlboro:12,Rothmans:13,Dunhill:14,Winfield:15};
+	var Drinks={Water:16,Tea:17,Coffee:18,Beer:19,Milk:20};
+	var HouseColor={Red:21,Green:22,Yellow:23,Blue:24,White:25};
 
 	//A ResultSet is an array of 5 5-tuples [{HouseColor,Nationality,Smokes,Drinks,Pet}..]
 
@@ -14,7 +14,7 @@ require(["camera","async_J"],function(camera,async_J){
 	
 	//A Test takes a resultset and returns a promise.  the promise resolves with the result set on a pass, and rejects with a fail.
 
-	Tests=[];
+	var Tests=[];
 
 	function putToArray(ob,offset){
 		var ret=[];
@@ -68,7 +68,7 @@ require(["camera","async_J"],function(camera,async_J){
 		
 	}
 	
-	function sequence(fns){
+	function _sequence(fns){
 		//returns a function which takes a value and returns a promise which resolves with the last function in fns
 		return function(val){
 			var seqRet=new async_J.promise();
@@ -86,7 +86,7 @@ require(["camera","async_J"],function(camera,async_J){
 	
 	function runTests(iterable){
 		var testRet=iterable.next();
-		testRet.then(sequence(Tests))
+		testRet.then(_sequence(Tests))
 			   .then(null,isExhaustedIter);
 			   .then(null,runTests)
 			   .then(outputPassedTest);
