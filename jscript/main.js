@@ -79,11 +79,12 @@ _Iterable.exhausted="Iterable exhausted";
 	var testPassed=4;
 	
 	var Tests=[function(val){
+		var ret=new async_J.promise();
 		//The brit lives in the red house
 		//if (find(val,"nationality","Brit")!==find(val,"color","Red")) throw "The Brit doesn't live in the Red House";
-		if (testPassed-->0) throw "test failed";
-		//console.log(val);
-		return val;
+		if (testPassed-->0) ret.reject("test failed");
+		else ret.resolve(val); 
+		return ret;
 	}];
 
 	function putToArray(ob,offset){
@@ -145,7 +146,7 @@ _Iterable.exhausted="Iterable exhausted";
 			   .then(undefined,isExhaustedIter)
 			   .then(undefined,function()
 				{
-					setTimeout(runTests.call(this,iterable),0)
+					setTimeout(runTests.call(this,iterable),0);
 					throw "not yet.";
 					})
 			   .then(outputPassedTest);
