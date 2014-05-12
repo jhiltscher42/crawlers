@@ -135,7 +135,7 @@ _Iterable.exhausted="Iterable exhausted";
 	function runTests(iterable){
 		var testRet=iterable.Next();
 		testRet.then(sayTesting).then(_sequence(Tests))
-			   .then(null,isExhaustedIter)
+			   //.then(null,isExhaustedIter)
 			   .then(null,function(){
 					setTimeout(runTests.call(this,iterable),0)})
 			   .then(outputPassedTest);
