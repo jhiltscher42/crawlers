@@ -149,14 +149,10 @@ _Iterable.exhausted="Iterable exhausted";
 		console.log("calling Next");
 		var testRet=iterable.Next();
 		console.log("Next called");
-		testRet //.then(sayTesting)
+		testRet .then(sayTesting)
 				.then(_sequence(Tests))
 			   .then(undefined,isExhaustedIter)
-			   .then(undefined,function()
-				{
-					setTimeout(runTests.call(this,iterable),0);
-					throw "not yet.";
-					})
+			   .then(undefined,runTests.bind(this,iterable));
 			   .then(outputPassedTest);
 		return testRet;
 	}
@@ -182,7 +178,7 @@ _Iterable.exhausted="Iterable exhausted";
 				vals.push(val);
 				num--;
 				if (num<=0) ret.resolve(vals);
-				else setTimeout(step,0);
+				else setTimeout(step,1);
 			});
 		}
 		step();
