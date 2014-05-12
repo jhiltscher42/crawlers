@@ -78,14 +78,23 @@ _Iterable.exhausted="Iterable exhausted";
 	
 	var testPassed=4;
 	
-	var Tests=[function(val){
+	function BritIsRed(val){
 		var ret=new async_J.promise();
 		//The brit lives in the red house
 		if (find(val,"nationality","Brit")!==find(val,"color","Red")) ret.reject( "The Brit doesn't live in the Red House");
 		//if (testPassed-->0) ret.reject("test failed");
 		else ret.resolve(val); 
 		return ret;
-	}];
+	}
+	
+	function SwedeKeepsDogs(val){
+		var ret=new async_J.promise();
+		if (find(val,"nationality","Swede")!==find(val,"pet","Dogs")) ret.reject("The Swede doesn't keep Dogs");
+		else ret.resolve(val);
+		return ret;
+		}
+	
+	var Tests=[BritIsRed,SwedeKeepsDogs];
 
 	function putToArray(ob,offset){
 		var ret=[];
