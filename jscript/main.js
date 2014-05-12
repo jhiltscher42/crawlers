@@ -18,6 +18,14 @@ require(["camera","async_J"],function(camera,async_J){
 
 function _Iterable(){
 		var colorIndex=0,nationalityIndex=0,drinkIndex=0,petIndex=0,smokeIndex=0;
+		var lastGen=null;
+	
+		this.dump=function()
+		{
+			console.log(colorIndex,nationalityIndex,drinkIndex,petIndex,smokeIndex);
+		}
+		
+		this.lastGen=function(){return lastGen;}
 	
 		this.Next=function(){
 			var ret=new async_J.promise();
@@ -60,7 +68,7 @@ function _Iterable(){
 				}				
 			}
 
-
+				lastGen=vals;
 				ret.resolve(vals);
 			return ret;
 		};
@@ -271,6 +279,7 @@ function _Iterable(){
 			touchEvt.preventDefault();
 		    });
 		var lists=new _Iterable();
+		window.lists=lists;
 		
 		runTests(lists).then(undefined,console.error.bind(console));
 	    });
