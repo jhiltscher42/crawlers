@@ -85,7 +85,6 @@ function _Iterable(){
 	{
 		return function(val)
 		{
-			console.log(val);
 			var ret=new async_J.promise();
 			if (!val) {
 				ret.reject("lost");
