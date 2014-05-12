@@ -68,7 +68,19 @@ _Iterable.exhausted="Iterable exhausted";
 	
 	//A Test takes a resultset and returns a promise.  the promise resolves with the result set on a pass, and rejects with a fail.
 
-	var Tests=[];
+	function find(resultSet,name,val){
+		//returns the tuple where tuple[name]==val;
+		for (var n=0;n<resultSet.length;n++){
+			if (resultSet[n][name]==val) return resultSet[n];
+			}
+		return null;
+		}
+	
+	var Tests=[function(val){
+		//The brit lives in the red house
+		if (find(val,"nationality","Brit")!==find(val,"color","Red")) throw "The Brit doesn't live in the Red House";
+		return val;
+	}];
 
 	function putToArray(ob,offset){
 		var ret=[];
