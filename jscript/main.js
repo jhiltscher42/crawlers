@@ -112,8 +112,15 @@ _Iterable.exhausted="Iterable exhausted";
 	}
 	
 	function isExhaustedIter(val){
-		if (val===_Iterable.exhausted) return val;
-		else throw val;
+		console.log("exhausted?");
+		if (val===_Iterable.exhausted){
+			console.log("yes");
+			return val;
+			}
+		else{
+			console.log("no");
+			throw val;
+			}
 		}
 	
 	function runTests(iterable){
