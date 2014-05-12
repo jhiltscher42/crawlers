@@ -24,18 +24,6 @@ function _Iterable(){
 			colorIndex++;
 			if (colorIndex>4) {
 				colorIndex=0; nationalityIndex++;
-				if (nationalityIndex>4){
-					nationalityIndex=0; drinkIndex++;
-					if (drinkIndex>4){
-						drinkIndex=0; petIndex++;
-						if (petIndex>4){
-							petIndex=0; smokeIndex++;
-							if (smokeIndex>4){
-								}
-							}
-						}
-					}
-				}				
 			}
 
 
