@@ -38,7 +38,7 @@ function _Iterable(){
 			return ret;
 		};
 		
-	}
+	};
 	
 _Iterable.exhausted="Iterable exhausted";
 
