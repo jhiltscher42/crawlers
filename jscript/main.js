@@ -151,9 +151,9 @@ _Iterable.exhausted="Iterable exhausted";
 		console.log("Next called");
 		testRet //.then(sayTesting)
 				.then(_sequence(Tests))
+			   .then(outputPassedTest)
 			   .then(undefined,isExhaustedIter)
-			   .then(undefined,runTests.bind(this,iterable))
-			   .then(outputPassedTest);
+			   .then(undefined,runTests.bind(this,iterable));
 		return testRet;
 	}
 	

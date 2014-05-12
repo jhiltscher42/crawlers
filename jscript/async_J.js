@@ -7,7 +7,7 @@ define([],function(){
 	
 	var PENDING=0,RESOLVED=1,REJECTED=2;
 	
-	nextTick=window.setImmediate?window.setImmediate.bind(window):function(cb){setTimeout(cb,0);};
+	nextTick=window.setImmediate?window.setImmediate.bind(window):function(cb){setTimeout(cb,1);};
 
 	var console={log:function(){}};
 	
