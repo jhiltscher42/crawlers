@@ -5,6 +5,25 @@ function _Iterable(){
 	
 		this.Next=function(){
 			var ret=new async_J.promise();
+			var vals=[{},{},{},{},{}];
+			
+			var colors=putToArray(HouseColor,colorIndex);
+			var nationality=putToArray(Nationalities,natIndex);
+			var smokes=putToArray(Smokes,smokeIndex);
+			var pets=putToArray(Pets,petIndex);
+			var drinks=putToArray(Drinks,drinkIndex);
+			
+			vals.forEach(function(val){
+					val.color=colors.pop();
+					val.nationality=nationalities.pop();
+					val.drink=drinks.pop();
+					val.pet=pets.pop();
+					val.smoke=smokes.pop();
+				});
+
+
+
+				ret.resolve(vals);
 			return ret;
 		};
 		
