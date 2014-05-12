@@ -16,7 +16,7 @@ require(["camera","async_J"],function(camera,async_J){
 
 	Tests=[];
 
-	var putToArray(ob,offset){
+	function putToArray(ob,offset){
 		var ret=[];
 		for (var v in ob){
 				ret.push(v);
