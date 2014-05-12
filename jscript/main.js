@@ -68,6 +68,7 @@ require(["camera","async_J"],function(camera,async_J){
 		
 	}
 	
+	/*
 	function _sequence(fns){
 		//returns a function which takes a value and returns a promise which resolves with the last function in fns
 		return function(val){
@@ -83,6 +84,7 @@ require(["camera","async_J"],function(camera,async_J){
 			return seqRet;
 		}
 	}
+	*/
 	
 	function runTests(iterable){
 		var testRet=iterable.next();
