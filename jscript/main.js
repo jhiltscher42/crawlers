@@ -79,7 +79,7 @@ _Iterable.exhausted="Iterable exhausted";
 	var Tests=[function(val){
 		//The brit lives in the red house
 		if (find(val,"nationality","Brit")!==find(val,"color","Red")) throw "The Brit doesn't live in the Red House";
-		console.log(val);
+		//console.log(val);
 		return val;
 	}];
 
@@ -97,13 +97,13 @@ _Iterable.exhausted="Iterable exhausted";
 	function _sequence(fns){
 		//returns a function which takes a value and returns a promise which resolves with the last function in fns
 		return function(val){
-			console.log("sequence "+fns.length);
+			//console.log("sequence "+fns.length);
 			var seqRet=new async_J.promise();
 			var step=new async_J.promise();
 			step.resolve(val);
 			//fns[0]().then(fns[1]).then(fns[2])...
 			fns.forEach(function(fn){
-				console.log(fn);
+				//console.log(fn);
 				step=step.then(fn);
 				});
 
