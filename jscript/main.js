@@ -272,7 +272,7 @@ function _Iterable(){
 		    });
 		var lists=new _Iterable();
 		
-		runTests(lists);
+		runTests(lists).then(undefined,console.error.bind(console));
 	    });
 
     });
