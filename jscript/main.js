@@ -146,7 +146,9 @@ function _Iterable(){
 		return function(val)
 		{
 			var IPassed=new async_J.promise();
-			async_J.all(fns.map(function(f){return f(val);})).then(IPassed.resolve.bind(IPassed,val),IPassed.reject);
+			async_J.all(fns.map(function(f){return f(val);}))
+				.then(function(v){console.log("all passed",v); return v},failed)
+				.then(IPassed.resolve.bind(IPassed,val),IPassed.reject);
 			return IPassed;
 		}
 	}
