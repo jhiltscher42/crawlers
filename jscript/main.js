@@ -142,8 +142,8 @@ _Iterable.exhausted="Iterable exhausted";
 		console.log("Next called");
 		testRet //.then(sayTesting)
 				.then(_sequence(Tests))
-			   .then(null,isExhaustedIter)
-			   .then(null,function()
+			   .then(undefined,isExhaustedIter)
+			   .then(undefined,function()
 				{
 					setTimeout(runTests.call(this,iterable),0)
 					throw "not yet.";
