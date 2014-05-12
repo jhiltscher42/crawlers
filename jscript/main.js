@@ -76,9 +76,12 @@ _Iterable.exhausted="Iterable exhausted";
 		return null;
 		}
 	
+	var testPassed=2;
+	
 	var Tests=[function(val){
 		//The brit lives in the red house
-		if (find(val,"nationality","Brit")!==find(val,"color","Red")) throw "The Brit doesn't live in the Red House";
+		//if (find(val,"nationality","Brit")!==find(val,"color","Red")) throw "The Brit doesn't live in the Red House";
+		if (testPassed-->0) throw "test failed";
 		//console.log(val);
 		return val;
 	}];
