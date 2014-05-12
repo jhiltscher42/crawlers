@@ -123,7 +123,8 @@ _Iterable.exhausted="Iterable exhausted";
 				else setTimeout(step,0);
 				});
 			}
-		}();
+		};
+		step();
 		return ret;
 	}
 	
