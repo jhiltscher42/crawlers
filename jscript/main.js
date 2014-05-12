@@ -132,15 +132,19 @@ _Iterable.exhausted="Iterable exhausted";
 		return val;
 		}
 	
-	function runTests(iterable){
+	function runTests(iterable)
+	{
 		var testRet=iterable.Next();
 		testRet.then(sayTesting).then(_sequence(Tests))
-			   //.then(null,isExhaustedIter)
-			   .then(null,function(){
-					setTimeout(runTests.call(this,iterable),0)})
+			   .then(null,isExhaustedIter)
+			   .then(null,function()
+				{
+					setTimeout(runTests.call(this,iterable),0)
+					throw "not yet.";
+					})
 			   .then(outputPassedTest);
 		return testRet;
-		}
+	}
 	
 	function outputPassedTest(val){
 		try{
