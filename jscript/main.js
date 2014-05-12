@@ -123,9 +123,14 @@ _Iterable.exhausted="Iterable exhausted";
 			}
 		}
 	
+	function sayTesting(val){
+		console.log("testing ",val);
+		return val;
+		}
+	
 	function runTests(iterable){
 		var testRet=iterable.Next();
-		testRet.then(_sequence(Tests))
+		testRet.then(sayTesting).then(_sequence(Tests))
 			   .then(null,isExhaustedIter)
 			   .then(null,runTests)
 			   .then(outputPassedTest);
