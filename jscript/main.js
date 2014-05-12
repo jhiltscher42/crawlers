@@ -143,7 +143,13 @@ _Iterable.exhausted="Iterable exhausted";
 		}
 	
 	function outputPassedTest(val){
-		console.log(val);
+		try{
+			console.log(val);
+			}
+		catch(e)
+			{
+			console.log("error?");
+			}
 	}
 	
 	function take(iter,num)
