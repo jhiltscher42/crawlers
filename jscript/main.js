@@ -111,6 +111,20 @@ _Iterable.exhausted="Iterable exhausted";
 		console.log(val);
 	}
 	
+	function take(iter,num){
+		var ret=new async_J.promise();
+		var vals=[];
+		function step(){
+			iter.Next().then(function(val){
+				vals.push(val);
+				num--;
+				if (num<=0) ret.resolve(vals);
+				else setTimeout(step,0);
+				});
+			}();
+		return ret;
+	}
+	
 	$(function(){
 		var myCamera=$("#viewCam").data("camera");
 		myCamera.setModel({draw:function(gc,extants){}});
@@ -119,9 +133,8 @@ _Iterable.exhausted="Iterable exhausted";
 			touchEvt.preventDefault();
 		    });
 		var lists=new _Iterable();
-		lists.Next().then(console.log.bind(console),console.error.bind(console))
-			 .then(lists.Next)
-			 .then(console.log.bind(console),console.error.bind(console));
+		
+		take(lists,6).then(console.log.bind(console),console.error.bind(console));
 	    });
 
     });
