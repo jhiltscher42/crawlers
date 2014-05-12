@@ -76,7 +76,7 @@ _Iterable.exhausted="Iterable exhausted";
 		return null;
 		}
 	
-	var testPassed=2;
+	var testPassed=4;
 	
 	var Tests=[function(val){
 		//The brit lives in the red house
