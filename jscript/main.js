@@ -97,6 +97,10 @@ _Iterable.exhausted="Iterable exhausted";
 		}
 	}
 	
+	function isExhaustedIter(val){
+		if (val===_Iterable.exhausted) return val;
+		else throw val;
+		}
 	
 	function runTests(iterable){
 		var testRet=iterable.Next();
@@ -138,7 +142,7 @@ _Iterable.exhausted="Iterable exhausted";
 		    });
 		var lists=new _Iterable();
 		
-		take(lists,6).then(console.log.bind(console),console.error.bind(console));
+		runTests(lists).then(console.log.bind(console,"OK"),console.error.bind(console));
 	    });
 
     });
