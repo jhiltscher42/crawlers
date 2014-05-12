@@ -96,7 +96,12 @@ _Iterable.exhausted="Iterable exhausted";
 	}
 	
 	
-	
+	function failed(val){
+		var ret=new async_J.promise();
+		console.log("failed",val);
+		ret.reject(val);
+		return ret;
+		}
 	
 	function _sequence(fns){
 		//returns a function which takes a value and returns a promise which resolves with the last function in fns
@@ -111,7 +116,7 @@ _Iterable.exhausted="Iterable exhausted";
 			fns.forEach(function(fn){
 				//console.log(fn);
 					console.log("step");
-					step=step.then(fn);
+					step=step.then(fn,failed);
 				});
 
 			step.then(seqRet.resolve,seqRet.reject);
