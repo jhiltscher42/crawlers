@@ -79,7 +79,7 @@ function _Iterable(){
 		this.Next=function(){
 			var ret=new async_J.promise();
 			var vals=[{},{},{},{},{}];
-			var colors=pColor.Current();
+			var colors=pColors.Current();
 			var nationalities=pNationalities.Current();
 			var smokes=pSmokes.Current();
 			var pets=pPets.Current();
