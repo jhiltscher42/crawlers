@@ -48,17 +48,28 @@ function Permutator(ob){
 			current=current.slice(0,1).concat(Child.Current());
 			if (childTicked)
 			{
+				console.log("child ticked",Child.Current());
 				pivotIndex++;
 				if (pivotIndex>=first.length) pivotIndex=0;
 				swap(0,pivotIndex);
+				console.log("new current:",JSON.stringify(current));
 				Child=new Permutator(current.slice(1));
 			}
 		}
 		
-		for (var n=0;n<first.length;n++) if (current[n]!==first[n]) return false;
+		for (var n=0;n<first.length;n++) 
+		{
+			if (current[n]!==first[n])
+			{
+				console.log(JSON.stringify(first),"!=",JSON.stringify(current));
+				return false;
+			}
+		}
 		return true;
 	}
 }
+
+window.Permutator=Permutator;
 	
 function _Iterable(){
 		var lastGen=null;
@@ -325,7 +336,7 @@ function _Iterable(){
 		var lists=new _Iterable();
 		window.lists=lists;
 		
-		runTests(lists).then(undefined,console.error.bind(console));
+		//runTests(lists).then(undefined,console.error.bind(console));
 	    });
 
     });
