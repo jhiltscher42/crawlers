@@ -15,10 +15,59 @@ require(["camera","async_J"],function(camera,async_J){
 	var Drinks={Water:16,Tea:17,Coffee:18,Beer:19,Milk:20};
 	var HouseColor={Red:21,Green:22,Yellow:23,Blue:24,White:25};
 
+	//Permutations is N!
 
+function Permutator(ob){
+	var current,first;
+	if (Array.isArray(ob)) first=ob.slice();
+	else first=Object.keys(ob);
+	current=first.slice();
+	//no matter what we are given, we end up with an array.
+	var Child;
+	var pivotIndex=0;
+	if (current.length>2){
+		Child=new Permutator(current.slice(1));
+	}
+	
+	function swap(in1,in2){
+		var sw=current[in1];
+		current[in1]=current[in2];
+		current[in2]=sw;
+	}
+	
+	this.Current=function(){return current.slice();}
+	this.Next=function()
+	{
+		//change current to the next permutation.  if that permutation is the same as the first one, return true;
+		if (first.length==0) return true;  //can't permute no items
+		if (first.length==1) return true;  //only one permutation for one item
+		if (first.length==2) swap(0,1);
+		if (first.length>2)
+		{
+			var childTicked=Child.Next();
+			current=current.slice(0,1).concat(Child.Current());
+			if (childTicked)
+			{
+				pivotIndex++;
+				if (pivotIndex>=first.length) pivotIndex=0;
+				swap(0,pivotIndex);
+				Child=new Permutator(current.slice(1));
+			}
+		}
+		
+		for (var n=0;n<first.length;n++) if (current[n]!==first[n]) return false;
+		return true;
+	}
+}
+	
 function _Iterable(){
-		var colorIndex=0,nationalityIndex=0,drinkIndex=0,petIndex=0,smokeIndex=0;
 		var lastGen=null;
+
+		var pColors=new Permutator(HouseColor);
+		var pNationalities=new Permutator(Nationalities);
+		var pSmokes=new Permutator(Smokes);
+		var pPets=new Permutator(Pets);
+		var pDrinks=new Permutator(Drinks);
 	
 		this.dump=function()
 		{
@@ -30,12 +79,11 @@ function _Iterable(){
 		this.Next=function(){
 			var ret=new async_J.promise();
 			var vals=[{},{},{},{},{}];
-			
-			var colors=putToArray(HouseColor,colorIndex);
-			var nationalities=putToArray(Nationalities,nationalityIndex);
-			var smokes=putToArray(Smokes,smokeIndex);
-			var pets=putToArray(Pets,petIndex);
-			var drinks=putToArray(Drinks,drinkIndex);
+			var colors=pColor.Current();
+			var nationalities=pNationalities.Current();
+			var smokes=pSmokes.Current();
+			var pets=pPets.Current();
+			var drinks=pDrinks.Current();
 			
 			vals.forEach(function(val){
 					val.color=colors.pop();
@@ -45,20 +93,16 @@ function _Iterable(){
 					val.smoke=smokes.pop();
 				});
 
-			colorIndex++;
-			if (colorIndex>4) 
+			
+			if (pColors.Next()) 
 			{
-				colorIndex=0; nationalityIndex++;
-				if (nationalityIndex>4)
+				if (pNationality.Next())
 				{
-					nationalityIndex=0; drinkIndex++;
-					if (drinkIndex>4)
+					if (pDrinks.Next())
 					{
-						drinkIndex=0; petIndex++;
-						if (petIndex>4)
+						if (pPets.Next())
 						{
-							petIndex=0; smokeIndex++;
-							if (smokeIndex>4)
+							if (pSmoke.Next())
 							{
 								ret.reject(_Iterable.exhausted);
 								return ret;
