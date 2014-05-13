@@ -50,8 +50,9 @@ function Permutator(ob){
 			{
 				console.log("child ticked",Child.Current());
 				pivotIndex++;
-				if (pivotIndex>=first.length) {pivotIndex=1;  return true;}
+				if (pivotIndex>=first.length) {pivotIndex=1;}
 				swap(0,pivotIndex);
+				if (pivotIndex==1) return true;
 				console.log("new current:",JSON.stringify(current));
 				Child=new Permutator(current.slice(1));
 			}
